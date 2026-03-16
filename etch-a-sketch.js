@@ -1,3 +1,7 @@
+const colorSquare = function (e) {
+  e.target.classList.add("colored");
+};
+
 const makeSquares = function (size) {
   const gridArea = document.querySelector("#grid-area");
   for (let i = 0; i < size; i++) {
@@ -6,6 +10,9 @@ const makeSquares = function (size) {
     for (let i = 0; i < size; i++) {
       const gridSquare = document.createElement("div");
       gridSquare.classList.add("grid-square");
+
+      gridSquare.addEventListener("mouseenter", colorSquare);
+
       gridRow.appendChild(gridSquare);
     }
     gridArea.appendChild(gridRow);
