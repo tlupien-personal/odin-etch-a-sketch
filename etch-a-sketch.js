@@ -1,5 +1,8 @@
 const colorSquare = function (e) {
-  e.target.classList.add("colored");
+  const r = Math.round(Math.random() * 256);
+  const g = Math.round(Math.random() * 256);
+  const b = Math.round(Math.random() * 256);
+  e.target.setAttribute("style", `background-color: rgb(${r} ${g} ${b})`);
 };
 
 const makeSquares = function (size) {
