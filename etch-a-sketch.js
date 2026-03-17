@@ -46,12 +46,13 @@ const resetGrid = function () {
 
 const promptForSize = function () {
   const promptText = "Enter the new number of squares per side:";
-  let size = prompt(promptText);
-  while (!Number.isInteger(size) && size >= MAX_SIZE) {
+  const promptWarning = "(the number must be a positive integer less than 100)";
+  let size = +prompt(promptText);
+  while (!Number.isInteger(size) || size >= MAX_SIZE || size <= 0) {
     if (size === null || size === "") {
       return null;
     }
-    size = prompt(promptText);
+    size = +prompt(promptText + "\n" + promptWarning);
   }
   return size;
 };
