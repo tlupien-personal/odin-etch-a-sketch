@@ -36,10 +36,6 @@ body {
   border: 1px solid black;
 }
 
-.colored {
-  background-color: black;
-}
-
 #reset-button {
   background-color: darkorange;
   border: None;

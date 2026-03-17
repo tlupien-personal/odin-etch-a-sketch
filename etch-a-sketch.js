@@ -1,5 +1,20 @@
+const RANDOM_COLOR_FACTOR = 256;
+const OPACITY_INCREASE = 0.1;
+const OPACITY_MAX = 1;
+const OPACITY_BASE = 0;
+const MAX_SIZE = 100;
+const INITIAL_SIZE = 16;
+
 const colorSquare = function (e) {
-  e.target.classList.add("colored");
+  const r = Math.round(Math.random() * RANDOM_COLOR_FACTOR);
+  const g = Math.round(Math.random() * RANDOM_COLOR_FACTOR);
+  const b = Math.round(Math.random() * RANDOM_COLOR_FACTOR);
+  e.target.style.backgroundColor = `rgb(${r} ${g} ${b})`;
+  const oldOpacity = e.target.style.opacity;
+  e.target.style.opacity = Math.min(
+    +oldOpacity + OPACITY_INCREASE,
+    OPACITY_MAX,
+  );
 };
 
 const makeSquares = function (size) {
@@ -10,6 +25,7 @@ const makeSquares = function (size) {
     for (let i = 0; i < size; i++) {
       const gridSquare = document.createElement("div");
       gridSquare.classList.add("grid-square");
+      gridSquare.style.opacity = OPACITY_BASE;
 
       gridSquare.addEventListener("mouseenter", colorSquare);
 
@@ -30,12 +46,13 @@ const resetGrid = function () {
 
 const promptForSize = function () {
   const promptText = "Enter the new number of squares per side:";
-  let size = prompt(promptText);
-  while (!Number.isInteger(size) && size >= 100) {
+  const promptWarning = "(the number must be a positive integer less than 100)";
+  let size = +prompt(promptText);
+  while (!Number.isInteger(size) || size >= MAX_SIZE || size <= 0) {
     if (size === null || size === "") {
       return null;
     }
-    size = prompt(promptText);
+    size = +prompt(promptText + "\n" + promptWarning);
   }
   return size;
 };
@@ -49,4 +66,4 @@ resetButton.addEventListener("click", (e) => {
   }
 });
 
-makeSquares(16);
+makeSquares(INITIAL_SIZE);
