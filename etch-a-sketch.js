@@ -25,20 +25,20 @@ const resetGrid = function () {
   const newGridArea = document.createElement("div");
   newGridArea.id = "grid-area";
   const body = document.querySelector("body");
-  body.appendChild(newGridArea) 
-}
+  body.appendChild(newGridArea);
+};
 
-const promptForSize = function() {
-  const promptText = "Enter the new number of squares per side:"
-  let size = prompt(promptText)
+const promptForSize = function () {
+  const promptText = "Enter the new number of squares per side:";
+  let size = prompt(promptText);
   while (!Number.isInteger(size) && size >= 100) {
     if (size === null || size === "") {
-      return null
+      return null;
     }
-    size = prompt(promptText)
+    size = prompt(promptText);
   }
   return size;
-}
+};
 
 const resetButton = document.querySelector("#reset-button");
 resetButton.addEventListener("click", (e) => {
@@ -47,6 +47,6 @@ resetButton.addEventListener("click", (e) => {
     resetGrid();
     makeSquares(size);
   }
-})
+});
 
 makeSquares(16);
