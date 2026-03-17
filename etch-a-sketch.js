@@ -2,7 +2,9 @@ const colorSquare = function (e) {
   const r = Math.round(Math.random() * 256);
   const g = Math.round(Math.random() * 256);
   const b = Math.round(Math.random() * 256);
-  e.target.setAttribute("style", `background-color: rgb(${r} ${g} ${b})`);
+  e.target.style.backgroundColor = `rgb(${r} ${g} ${b})`;
+  const oldOpacity = e.target.style.opacity;
+  e.target.style.opacity = Math.min(+oldOpacity + 0.1, 1);
 };
 
 const makeSquares = function (size) {
@@ -13,6 +15,7 @@ const makeSquares = function (size) {
     for (let i = 0; i < size; i++) {
       const gridSquare = document.createElement("div");
       gridSquare.classList.add("grid-square");
+      gridSquare.style.opacity = 0;
 
       gridSquare.addEventListener("mouseenter", colorSquare);
 
